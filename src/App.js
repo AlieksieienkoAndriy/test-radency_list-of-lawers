@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import {parse} from 'papaparse';
-import './App.css';
+import './App.scss';
 import { LawersList } from './components/LawersList/LawersList';
 
 function App() {  
@@ -11,12 +11,8 @@ function App() {
   const handleChange = (event) => {
     const reader = new FileReader();
     
-    console.log(event.target.files[0]);
-
     reader.onload = function () {
-      const text = reader.result;
-      
-      // console.log((/[hone]/gi).test(text));     
+      const text = reader.result;        
 
       const result = parse(text, {header: true});
 
@@ -28,7 +24,7 @@ function App() {
         setVaidFile(false);
       } else {
           setVaidFile(true);
-          
+
           setContacts(result.data
             .filter(list => (list['License states']))
             .map((lawer, index) => ({        
@@ -53,26 +49,42 @@ function App() {
   console.log(contacts);  
 
   return (
-    <div className="App">      
-      <h1>List of lawers</h1>     
+    <div className="App">
+      <header className="header">
+        <a className="header__logo" href="https://www.radency.com/">
+          <img 
+            src="logo.png"
+            alt="radency"
+        ></img>
+        </a>
+        <p className="header__title">software engineering</p>
+      </header>
 
-      <input 
-        type = "file"
-        accept = ".csv"
-        ref = {inputFileRef}
-        style = {{display: "none"}}
-        onChange = {handleChange}
-      />      
-      <br/>
-      <button
-        onClick = {() => {
-          inputFileRef.current.click()
-        }}
-      >
-        Import users
-      </button>
-      <br/>
-        {validFile ? <LawersList contacts = {contacts}/> : <p>File format is not correct</p>}      
+      <main className="main">
+        <h1 className="main__title">List of lawers</h1>     
+
+        <input 
+          type="file"
+          accept=".csv"
+          ref={inputFileRef}
+          style={{display: "none"}}
+          onChange={handleChange}
+        />      
+        <br/>
+        <button
+          className="main__file-selector"
+          onClick={() => {
+            inputFileRef.current.click()
+          }}
+        >
+          Import users
+        </button>
+        
+        {validFile 
+          ? <LawersList contacts = {contacts}/> 
+          : <p className="main__invalid">File format is not correct</p>
+        }    
+      </main>      
     </div>
   );
 }
