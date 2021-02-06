@@ -140,9 +140,7 @@ export const validatorDate = (date) => {
   let currentDate = new Date();
   let someDate = new Date(date);
 
-  const correctFormat = (/\d{2}[/]\d{2}[/]\d{4}/.test(date)) || (/\d{4}-\d{2}-\d{2}/.test(date));
-
-  console.log(correctFormat);
+  const correctFormat = (/\d{2}[/]\d{2}[/]\d{4}/.test(date)) || (/\d{4}-\d{2}-\d{2}/.test(date));  
 
   return ((someDate.getTime() > currentDate.getTime())) && correctFormat;
 }
