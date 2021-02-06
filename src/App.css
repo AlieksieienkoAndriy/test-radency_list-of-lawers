@@ -1,0 +1,17 @@
+.contant {
+  width: fit-content;  
+  margin: auto;  
+}
+
+.table {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+.row {
+  border: 1px solid black;
+}
+
+.invalid {
+  background-color: #F4CCCC;
+}
