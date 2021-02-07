@@ -10,13 +10,12 @@ function App() {
   const inputFileRef = useRef(undefined);
 
   const handleChange = (event) => {
+    if (Object.keys(event.target.files).length === 0) return; 
+
     const reader = new FileReader();
     
-    reader.onload = function () {
+    reader.onload = function () {      
       const text = reader.result.toLowerCase();
-      
-      console.log(text);
-
       const result = parse(text, {header: true});
       
       const columns = Object.keys(result.data[0]);
@@ -49,8 +48,6 @@ function App() {
 
     reader.readAsText(event.target.files[0]);
   };  
-
-  console.log(contacts);  
 
   return (
     <div className="App">
