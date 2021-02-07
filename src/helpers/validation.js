@@ -5,108 +5,108 @@ export const validatorState = (state) => {
     let result;
 
     switch(value) {
-      case 'Alabama': result = 'AL';
+      case 'alabama': result = 'AL';
         break;
-      case 'Alaska': result = 'AK';
+      case 'alaska': result = 'AK';
         break;
-      case 'Arizona': result = 'AZ';
+      case 'arizona': result = 'AZ';
         break;
-      case 'Arkansas': result = 'AR';
+      case 'arkansas': result = 'AR';
         break;
-      case 'California': result = 'CA';
+      case 'california': result = 'CA';
         break;
-      case 'Colorado': result = 'CO';
+      case 'colorado': result = 'CO';
         break;
-      case 'Connecticut': result = 'CT';
+      case 'connecticut': result = 'CT';
         break;
-      case 'Delaware': result = 'DE';
+      case 'delaware': result = 'DE';
         break;
-      case 'Florida': result = 'FL';
+      case 'florida': result = 'FL';
         break;
-      case 'Georgia': result = 'GA';
+      case 'georgia': result = 'GA';
         break;
-      case 'Hawaii': result = 'HI';
+      case 'hawaii': result = 'HI';
         break;
-      case 'Idaho': result = 'ID';
+      case 'idaho': result = 'ID';
         break;
-      case 'Illinois': result = 'IL';
+      case 'illinois': result = 'IL';
         break;
-      case 'Indiana': result = 'IN';
+      case 'indiana': result = 'IN';
         break;
-      case 'Iowa': result = 'IA';
+      case 'iowa': result = 'IA';
         break;
-      case 'Kansas': result = 'KS';
+      case 'kansas': result = 'KS';
         break;
-      case 'Kentucky': result = 'KY';
+      case 'kentucky': result = 'KY';
         break;
-      case 'Louisiana': result = 'LA';
+      case 'louisiana': result = 'LA';
         break;
-      case 'Maine': result = 'ME';
+      case 'maine': result = 'ME';
         break;
-      case 'Maryland': result = 'MD';
+      case 'maryland': result = 'MD';
         break;
-      case 'Massachusetts': result = 'MA';
+      case 'massachusetts': result = 'MA';
         break;
-      case 'Michigan': result = 'MI';
+      case 'michigan': result = 'MI';
         break;
-      case 'Minnesota': result = 'MN';
+      case 'minnesota': result = 'MN';
         break;
-      case 'Mississippi': result = 'MS';
+      case 'mississippi': result = 'MS';
         break;
-      case 'Missouri': result = 'MO';
+      case 'missouri': result = 'MO';
         break;
-      case 'Montana': result = 'MT';
+      case 'montana': result = 'MT';
         break;
-      case 'Nebraska': result = 'NE';
+      case 'nebraska': result = 'NE';
         break;
-      case 'Nevada': result = 'NV';
+      case 'nevada': result = 'NV';
         break;
-      case 'New Hampshire': result = 'NH';
+      case 'new hampshire': result = 'NH';
         break;
-      case 'New Jersey': result = 'NJ';
+      case 'new jersey': result = 'NJ';
         break;
-      case 'New Mexico': result = 'NM';
+      case 'new mexico': result = 'NM';
         break;
-      case 'New York': result = 'NY';
+      case 'new york': result = 'NY';
         break;
-      case 'North Carolina': result = 'NC';
+      case 'north carolina': result = 'NC';
         break;
-      case 'North Dakota': result = 'ND';
+      case 'north dakota': result = 'ND';
         break;
-      case 'Ohio': result = 'OH';
+      case 'ohio': result = 'OH';
         break;
-      case 'Oklahoma': result = 'OK';
+      case 'oklahoma': result = 'OK';
         break;
-      case 'Oregon': result = 'OR';
+      case 'oregon': result = 'OR';
         break;
-      case 'Pennsylvania': result = 'PA';
+      case 'pennsylvania': result = 'PA';
         break;
-      case 'Rhode Island': result = 'RI';
+      case 'rhode island': result = 'RI';
         break;
-      case 'South Carolina': result = 'SC';
+      case 'south carolina': result = 'SC';
         break;
-      case 'South Dakota': result = 'SD';
+      case 'south dakota': result = 'SD';
         break;
-      case 'Tennessee': result = 'TN';
+      case 'tennessee': result = 'TN';
         break;
-      case 'Texas': result = 'TX';
+      case 'texas': result = 'TX';
         break;
-      case 'Utah': result = 'UT';
+      case 'utah': result = 'UT';
         break;
-      case 'Vermont': result = 'VT';
+      case 'vermont': result = 'VT';
         break;
-      case 'Virginia': result = 'VA';
+      case 'virginia': result = 'VA';
         break;
-      case 'Washington ': result = 'WA';
+      case 'washington ': result = 'WA';
         break;
-      case 'West Virginia': result = 'WV';
+      case 'west virginia': result = 'WV';
         break;
-      case 'Wisconsin': result = 'WI';
+      case 'wisconsin': result = 'WI';
         break;
-      case 'Wyoming': result = 'WY';
+      case 'wyoming': result = 'WY';
         break;
 
-      default: result = state;
+      default: result = "Wrong states name";
     }    
     return result;
   } 
@@ -115,7 +115,7 @@ export const validatorState = (state) => {
     let states = state.split(',').map(state => state.trim());    
 
     let validatedStates = states
-      .map(state => ((state.length > 2) ? switchStates(state) : state))
+      .map(state => ((state.length > 2) ? switchStates(state) : state.toUpperCase()))
       .join(' | ');
 
     return validatedStates;
@@ -129,7 +129,9 @@ export const validatorState = (state) => {
 export const validatorSameLawer = (arr, el) => {
   let result =
   (arr.findIndex(item => (
-    (item.id === el.id) ? false : (item.phone === el.phone || item.email.toLowerCase() === el.email.toLowerCase())
+    item.id === el.id 
+      ? false 
+      : (item.phone === el.phone) || (item.email.toLowerCase() === el.email.toLowerCase())
   ))
   ) + 1;
 

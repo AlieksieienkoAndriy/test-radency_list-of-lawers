@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { validatorState, isInteger, validatorSameLawer, validatorDate } from '../../helpers/validation';
-import './LawersList.scss';
+import './LawyersList.scss';
 
-export const LawersList = ({contacts}) => {
+export const LawyersList = ({contacts}) => {
 
   return (
+    contacts.length > 0 &&
+
     <section className="list">
       <table className="table list__table">
         <thead>
@@ -25,7 +27,7 @@ export const LawersList = ({contacts}) => {
           </tr>
         </thead>
         <tbody>            
-          { contacts.length > 0 &&
+          { 
             contacts                              
               .map((contact, index, array) => (
                 <tr key = {contact.id}>
@@ -34,7 +36,10 @@ export const LawersList = ({contacts}) => {
                   <td className="table__row">{contact.phone}</td>
 
                   <td 
-                    className="table__row"
+                    className={classNames({
+                      "table__row": true,
+                      "table__row--invalid": !/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(contact.email),
+                    })}
                   >
                     {contact.email}
                   </td>
@@ -75,8 +80,13 @@ export const LawersList = ({contacts}) => {
                     {contact.isChildren}
                   </td>
 
-                  <td className="table__row">
-                    {validatorState(contact.states)}
+                  <td 
+                    className={classNames({
+                      "table__row": true,
+                      "table__row--invalid": (contact.states === 'Wrong states name' || contact.states === ''),
+                    })}  
+                  >                    
+                    {contact.states}
                   </td>
 
                   <td 
@@ -91,7 +101,7 @@ export const LawersList = ({contacts}) => {
                   <td 
                     className={classNames({
                       "table__row": true,
-                      "table__row--invalid":  !/\w{6}/.test(contact.license),
+                      "table__row--invalid": (!/\w{6}/.test(contact.license) || contact.license.length !== 6),
                     })}                     
                   >{contact.license}</td>
 
