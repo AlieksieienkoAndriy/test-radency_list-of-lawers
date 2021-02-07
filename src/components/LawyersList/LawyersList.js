@@ -33,7 +33,12 @@ export const LawyersList = ({contacts}) => {
                 <tr key = {contact.id}>
                   <td className="table__row">{contact.id}</td>
                   <td className="table__row">{contact.name}</td>
-                  <td className="table__row">{contact.phone}</td>
+                  <td
+                     className={classNames({
+                      "table__row": true,
+                      "table__row--invalid": contact.phone === "Wrong phone number",
+                    })}
+                  >{contact.phone}</td>
 
                   <td 
                     className={classNames({
