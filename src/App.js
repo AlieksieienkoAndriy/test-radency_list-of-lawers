@@ -32,7 +32,7 @@ function App() {
             .filter(list => (list['full name']))
             .map((lawer, index) => ({        
               name: lawer['full name'].trim().toUpperCase(),
-              phone: (lawer['phone'].trim().length >=10) ? lawer['phone'].trim().padStart(12, '+1') : "Wrong phone number",
+              phone: (lawer['phone'].trim().length >= 10) ? lawer['phone'].trim().padStart(12, '+1') : "Wrong phone number",
               email: lawer['email'].trim(), 
               age: lawer['age'] ? +lawer['age'] : '', 
               experience: lawer['experience'] ? +lawer['experience'] : '', 
@@ -45,7 +45,6 @@ function App() {
           })));
         }          
     };
-
     reader.readAsText(event.target.files[0]);
   };  
 
